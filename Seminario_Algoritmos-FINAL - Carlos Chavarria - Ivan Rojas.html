@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Seminario_Algoritmos-FINAL</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Seminario_Algoritmos-FINAL - Carlos Chavarria - Ivan Rojas</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7522,7 +7522,7 @@ a.anchor-link {
 <li>Carlos Eduardo Chavarria Mujica</li>
 <li>Ivan Luis Eduardo Rojas Rojas</li>
 </ul>
-<p>Url: <a href="https://github.com/.../03MAIR---Algoritmos-de-Optimizacion---2019/tree/master/SEMINARIO">https://github.com/.../03MAIR---Algoritmos-de-Optimizacion---2019/tree/master/SEMINARIO</a><br/>
+<p>Url: <a href="https://github.com/08edu02/03MIAR_04_A_2026_Proyecto_TrabajoPractico">https://github.com/08edu02/03MIAR_04_A_2026_Proyecto_TrabajoPractico</a><br/>
 Problema:</p>
 <blockquote>
 <ol start="2">
@@ -7758,7 +7758,7 @@ Desde la La Liga de fútbol profesional se pretende organizar los horarios de lo
 <td style="text-align:left">0.75</td>
 <td style="text-align:left">0.75</td>
 <td style="text-align:left">0.56</td>
-<td style="text-align:left">0.56</td>
+<td style="text-align:left">0.42</td>
 </tr>
 <tr>
 <td style="text-align:left">Alavés vs Levante</td>
@@ -7832,30 +7832,54 @@ Desde la La Liga de fútbol profesional se pretende organizar los horarios de lo
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Sin restricciones:</strong></p>
-<p>Cada uno de los 10 partidos puede asignarse a cualquiera de los 10 horarios disponibles.
-Si no hubiera reglas, cada partido tiene 10 opciones de horario:</p>
-<p>$$10×10×10×⋯×10=10^{10}$$</p>
-<p>$$10^{10}=10000000000$$</p>
-<p>Son 10 mil millones de posibilidades.</p>
-<p><strong>Con restricciones:</strong></p>
-<p>A) Al menos 1 partido el viernes (a las 20:00)</p>
-<p>B) Al menos 1 partido el lunes (a las 20:00)</p>
-<p>C) Los demás partidos pueden ir a cualquier horario (incluyendo viernes o lunes)</p>
-<p>Las asignaciones que no cumplen son aquellas en las que ningún partido se juega el viernes.
-Si ningún partido va al viernes, entonces cada partido solo tiene 9 opciones. Calculando el número de posibilidades:</p>
-<p>$$9×9×9×⋯×9=9^{10}$$</p>
-<p>Similarmente con el lunes. Si ningún partido va al lunes, cada partido solo tiene 9 opciones. Calculando el número de posibilidades:</p>
-<p>$$9×9×9×⋯×9=9^{10}$$</p>
-<p>Dentro de estas posibilidades, existen casos de intersección donde no se dan partidos ni lunes ni viernes, entonces cada partido solo tiene 8 opciones de los 10 horarios. Calculando el número de posibilidades:</p>
-<p>$$8×8×8×⋯×8=8^{10}$$</p>
-<p>Estas posibilidades están dentro del caso de si ningún partido va el viernes, asi como si ningún partido va el lunes.</p>
-<p>Para hallar el total de posibilidades con restricciones, debemos restar al total sin restricciones ($10^{10}$), los casos analizados sin el lunes y sin el viernes:</p>
-<p>$$10^{10}-9^{10}-9^{10}$$</p>
-<p>Sin embargo, como en cada resta está la intersección, estamos quitando dos veces esas $8^{10}$ posibilidades, por ello debemos regresar sumando una de esas diferencias:</p>
-<p>$$10^{10}-9^{10}-9^{10}+8^{10}$$</p>
-<p>Entonces el total de posibilidades con restricciones es:</p>
-<p>$$10000000000-2*3486784401+1073741824 = 4100173022$$</p>
+<p><em>Nota:</em> El enunciado indica "asignar obligatoriamente siempre un partido el viernes y un partido el lunes". Se interpreta como "al menos uno". Si la restricción fuera "exactamente uno", el cálculo sería distinto ($10 \times 9 \times 8^8$).</p>
+<p><strong>Sin restricciones:</strong>
+Cada uno de los 10 partidos puede asignarse a cualquiera de los 10 horarios disponibles.
+$$10^{10} = 10.000.000.000$$
+Son 10.000 millones de posibilidades.</p>
+<p><strong>Con restricciones (Al menos uno el viernes y al menos uno el lunes):</strong>
+Utilizamos el principio de inclusión-exclusión:</p>
+<ul>
+<li>Total sin restricciones: $10^{10}$</li>
+<li>Sin partidos el viernes: $9^{10}$</li>
+<li>Sin partidos el lunes: $9^{10}$</li>
+<li>Intersección (ni viernes ni lunes): $8^{10}$</li>
+</ul>
+<p>Fórmula: $10^{10} - 9^{10} - 9^{10} + 8^{10}$</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">total_sin_restricciones</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">10</span>
+<span class="n">sin_viernes</span> <span class="o">=</span> <span class="mi">9</span><span class="o">**</span><span class="mi">10</span>
+<span class="n">sin_lunes</span> <span class="o">=</span> <span class="mi">9</span><span class="o">**</span><span class="mi">10</span>
+<span class="n">ni_viernes_ni_lunes</span> <span class="o">=</span> <span class="mi">8</span><span class="o">**</span><span class="mi">10</span>
+
+<span class="n">total_con_restricciones</span> <span class="o">=</span> <span class="n">total_sin_restricciones</span> <span class="o">-</span> <span class="n">sin_viernes</span> <span class="o">-</span> <span class="n">sin_lunes</span> <span class="o">+</span> <span class="n">ni_viernes_ni_lunes</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Posibilidades con restricciones: </span><span class="si">{</span><span class="n">total_con_restricciones</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="c1"># Resultado: 4100173022</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Posibilidades con restricciones: 4100173022
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -7901,7 +7925,7 @@ Si ningún partido va al viernes, entonces cada partido solo tiene 9 opciones. C
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">partidos</span> <span class="o">=</span> <span class="p">[</span>
@@ -8052,28 +8076,22 @@ Aparte, tengo una lista de partidos donde cada partido tiene sus datos fijos: lo
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Asignación de horario -&gt; lista de IDs de partidos</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Asignación de horario -&gt; lista de IDs de partidos (cumple restricciones)</span>
 <span class="n">asignacion</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="p">(</span><span class="s1">'Viernes'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">(</span><span class="s1">'Viernes'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
     <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">12</span><span class="p">):</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
     <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span>
     <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">18</span><span class="p">):</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span>
-    <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
-    <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
-    <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">18</span><span class="p">):</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span>
-    <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="p">[</span><span class="mi">9</span><span class="p">],</span>
-    <span class="p">(</span><span class="s1">'Lunes'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="p">[]</span>
+    <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+    <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">12</span><span class="p">):</span> <span class="p">[],</span>
+    <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">18</span><span class="p">):</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span>
+    <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span>
+    <span class="p">(</span><span class="s1">'Lunes'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="p">[</span><span class="mi">9</span><span class="p">]</span>
 <span class="p">}</span>
-
-<span class="c1"># Datos de los partidos</span>
-<span class="n">partidos</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'local'</span><span class="p">:</span> <span class="s1">'Celta'</span><span class="p">,</span> <span class="s1">'visitante'</span><span class="p">:</span> <span class="s1">'Real Madrid'</span><span class="p">,</span> <span class="s1">'categoria'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'B'</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">),</span> <span class="s1">'base'</span><span class="p">:</span> <span class="mf">1.3</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'local'</span><span class="p">:</span> <span class="s1">'Valencia'</span><span class="p">,</span> <span class="s1">'visitante'</span><span class="p">:</span> <span class="s1">'R. Sociedad'</span><span class="p">,</span> <span class="s1">'categoria'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'B'</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">),</span> <span class="s1">'base'</span><span class="p">:</span> <span class="mf">1.3</span><span class="p">},</span>
-    <span class="c1"># ... 8 restantes</span>
-<span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -8201,67 +8219,54 @@ de categorías (A, B, C) de los equipos que se enfrentan.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Lista de los 10 partidos de la jornada.</span>
-
-<span class="n">partidos</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'local'</span><span class="p">:</span> <span class="s1">'Celta'</span><span class="p">,</span> <span class="s1">'visitante'</span><span class="p">:</span> <span class="s1">'Real Madrid'</span><span class="p">,</span> <span class="s1">'base'</span><span class="p">:</span> <span class="mf">1.3</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'local'</span><span class="p">:</span> <span class="s1">'Valencia'</span><span class="p">,</span> <span class="s1">'visitante'</span><span class="p">:</span> <span class="s1">'R. Sociedad'</span><span class="p">,</span> <span class="s1">'base'</span><span class="p">:</span> <span class="mf">1.3</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'local'</span><span class="p">:</span> <span class="s1">'Mallorca'</span><span class="p">,</span> <span class="s1">'visitante'</span><span class="p">:</span> <span class="s1">'Eibar'</span><span class="p">,</span> <span class="s1">'base'</span><span class="p">:</span> <span class="mf">0.47</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'local'</span><span class="p">:</span> <span class="s1">'Athletic'</span><span class="p">,</span> <span class="s1">'visitante'</span><span class="p">:</span> <span class="s1">'Barcelona'</span><span class="p">,</span> <span class="s1">'base'</span><span class="p">:</span> <span class="mf">1.3</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">'local'</span><span class="p">:</span> <span class="s1">'Leganés'</span><span class="p">,</span> <span class="s1">'visitante'</span><span class="p">:</span> <span class="s1">'Osasuna'</span><span class="p">,</span> <span class="s1">'base'</span><span class="p">:</span> <span class="mf">0.47</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">'local'</span><span class="p">:</span> <span class="s1">'Villarreal'</span><span class="p">,</span> <span class="s1">'visitante'</span><span class="p">:</span> <span class="s1">'Granada'</span><span class="p">,</span> <span class="s1">'base'</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">'local'</span><span class="p">:</span> <span class="s1">'Alavés'</span><span class="p">,</span> <span class="s1">'visitante'</span><span class="p">:</span> <span class="s1">'Levante'</span><span class="p">,</span> <span class="s1">'base'</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">'local'</span><span class="p">:</span> <span class="s1">'Espanyol'</span><span class="p">,</span> <span class="s1">'visitante'</span><span class="p">:</span> <span class="s1">'Sevilla'</span><span class="p">,</span> <span class="s1">'base'</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">'local'</span><span class="p">:</span> <span class="s1">'Betis'</span><span class="p">,</span> <span class="s1">'visitante'</span><span class="p">:</span> <span class="s1">'Valladolid'</span><span class="p">,</span> <span class="s1">'base'</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">'id'</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">'local'</span><span class="p">:</span> <span class="s1">'Atlético'</span><span class="p">,</span> <span class="s1">'visitante'</span><span class="p">:</span> <span class="s1">'Getafe'</span><span class="p">,</span> <span class="s1">'base'</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">}</span>
-<span class="p">]</span>
-
-
-<span class="c1"># Lista de los 10 horarios disponibles. Cada horario es una tupla (día, hora).</span>
-
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Lista de los 10 horarios disponibles. Cada horario es una tupla (día, hora).</span>
 <span class="n">horarios</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s1">'Viernes'</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="c1">#índice 0</span>
-    <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="c1">#índice 1</span>
-    <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="c1">#...</span>
+    <span class="p">(</span><span class="s1">'Viernes'</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>  <span class="c1"># índice 0</span>
+    <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>   <span class="c1"># índice 1</span>
+    <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
     <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span>
     <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
     <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
     <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
     <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span>
     <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'Lunes'</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>  <span class="c1">#índice 9</span>
+    <span class="p">(</span><span class="s1">'Lunes'</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>     <span class="c1"># índice 9</span>
 <span class="p">]</span>
 
-<span class="c1"># Diccionario de coeficientes de ponderación por horario. Cada clave es una tupla de la lista de horarios y su valor es el coeficiente</span>
-
+<span class="c1"># Coeficientes de ponderación por horario (clave = tupla de la lista anterior)</span>
 <span class="n">coeficientes</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">(</span><span class="s1">'Viernes'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="mf">0.40</span><span class="p">,</span>
-    <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">12</span><span class="p">):</span> <span class="mf">0.55</span><span class="p">,</span>
-    <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span> <span class="mf">0.70</span><span class="p">,</span>
-    <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">18</span><span class="p">):</span> <span class="mf">0.80</span><span class="p">,</span>
-    <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="mf">1.00</span><span class="p">,</span>
-    <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">12</span><span class="p">):</span> <span class="mf">0.45</span><span class="p">,</span>
-    <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span> <span class="mf">0.75</span><span class="p">,</span>
-    <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">18</span><span class="p">):</span> <span class="mf">0.85</span><span class="p">,</span>
-    <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="mf">1.00</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">12</span><span class="p">):</span> <span class="mf">0.55</span><span class="p">,</span> <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span> <span class="mf">0.70</span><span class="p">,</span> <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">18</span><span class="p">):</span> <span class="mf">0.80</span><span class="p">,</span> <span class="p">(</span><span class="s1">'Sábado'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="mf">1.00</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">12</span><span class="p">):</span> <span class="mf">0.45</span><span class="p">,</span> <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span> <span class="mf">0.75</span><span class="p">,</span> <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">18</span><span class="p">):</span> <span class="mf">0.85</span><span class="p">,</span> <span class="p">(</span><span class="s1">'Domingo'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="mf">1.00</span><span class="p">,</span>
     <span class="p">(</span><span class="s1">'Lunes'</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span> <span class="mf">0.40</span>
 <span class="p">}</span>
-
-<span class="c1"># Diccionario de penalización. La clave son las coincidencias de partidos en un mismo horario y el valor el coeficiente de penalización.</span>
-
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Diccionario de penalización.</span>
 <span class="n">penalizacion</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="mi">0</span><span class="p">:</span> <span class="mf">0.00</span><span class="p">,</span>  <span class="c1"># 0 coincidencias (1 partido) → 0% de penalización</span>
-    <span class="mi">1</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>  <span class="c1"># 1 coincidencia (2 partidos) → 25% de penalización</span>
-    <span class="mi">2</span><span class="p">:</span> <span class="mf">0.45</span><span class="p">,</span>  <span class="c1"># 2 coincidencias (3 partidos) → 45% de penalización</span>
-    <span class="mi">3</span><span class="p">:</span> <span class="mf">0.60</span><span class="p">,</span>  <span class="c1"># ...</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="mf">0.00</span><span class="p">,</span>  
+    <span class="mi">1</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>  
+    <span class="mi">2</span><span class="p">:</span> <span class="mf">0.45</span><span class="p">,</span>  
+    <span class="mi">3</span><span class="p">:</span> <span class="mf">0.60</span><span class="p">,</span>  
     <span class="mi">4</span><span class="p">:</span> <span class="mf">0.70</span><span class="p">,</span>
     <span class="mi">5</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span>
     <span class="mi">6</span><span class="p">:</span> <span class="mf">0.78</span><span class="p">,</span>
     <span class="mi">7</span><span class="p">:</span> <span class="mf">0.80</span><span class="p">,</span>
-    <span class="mi">8</span><span class="p">:</span> <span class="mf">0.80</span>   <span class="c1"># 8 coincidencias (9 partidos) → 45%</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="mf">0.80</span>   <span class="c1"># 8 coincidencias (9 partidos) → 80%</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -8301,26 +8306,22 @@ $$asignacion = [4, 7, 2, -1, -1, -1, -1, -1, -1, -1]$$</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calcular_audiencia</span><span class="p">(</span><span class="n">asignacion</span><span class="p">):</span>
-
     <span class="c1"># Agrupemos los partidos por horario en un diccionario horario_partidos</span>
     <span class="c1"># Ejemplo: {('Sábado', 20): [0, 4], ('Domingo', 16): [5, 6], ...}</span>
     <span class="n">horario_partidos</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># Inicializa vacío</span>
 
-    <span class="c1"># Con enumerate damos un número de orden a los valores de horario de la lista que coincidiría con el id del partido.</span>
     <span class="c1"># Recorremos cada partido para saber en qué horario juega.</span>
     <span class="k">for</span> <span class="n">id_partido</span><span class="p">,</span> <span class="n">id_horario</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">asignacion</span><span class="p">):</span>
-        <span class="c1"># Obtenemos la tupla (día, hora)</span>
-        <span class="n">horario</span> <span class="o">=</span> <span class="n">horarios</span><span class="p">[</span><span class="n">id_horario</span><span class="p">]</span>  
-
-        <span class="c1"># Si el horario no está en el diccionario, lo añadimos con una lista vacía.</span>
+        <span class="k">if</span> <span class="n">id_horario</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> 
+            <span class="k">continue</span> <span class="c1"># Ignorar partidos no asignados (vital para el Beam Search)</span>
+            
+        <span class="n">horario</span> <span class="o">=</span> <span class="n">horarios</span><span class="p">[</span><span class="n">id_horario</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">horario</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">horario_partidos</span><span class="p">:</span>
             <span class="n">horario_partidos</span><span class="p">[</span><span class="n">horario</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-
-        <span class="c1"># Añadimos el ID del partido a la lista de ese horario.</span>
         <span class="n">horario_partidos</span><span class="p">[</span><span class="n">horario</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">id_partido</span><span class="p">)</span>
 
     <span class="c1"># Calculemos la audiencia por horario.</span>
@@ -8334,7 +8335,8 @@ $$asignacion = [4, 7, 2, -1, -1, -1, -1, -1, -1, -1]$$</p>
 
         <span class="c1"># Factor de penalización: 1 - penalización.</span>
         <span class="c1"># Ejemplo: penalización 0.25 → factor 0.75.</span>
-        <span class="n">factor_penalizacion</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">penalizacion</span><span class="p">[</span><span class="n">num_coincidencias</span><span class="p">]</span>
+        <span class="c1"># Usamos .get() para evitar KeyError si hay 9 o más coincidencias</span>
+        <span class="n">factor_penalizacion</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">penalizacion</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">num_coincidencias</span><span class="p">,</span> <span class="mf">0.80</span><span class="p">)</span>
 
         <span class="c1"># Coeficiente del horario</span>
         <span class="c1"># Ejemplo: Sábado 20:00 → 1.00</span>
@@ -8342,16 +8344,8 @@ $$asignacion = [4, 7, 2, -1, -1, -1, -1, -1, -1, -1]$$</p>
 
         <span class="c1"># Calculamos la audiencia de cada partido en este horario.</span>
         <span class="k">for</span> <span class="n">id_partido</span> <span class="ow">in</span> <span class="n">ids_partidos</span><span class="p">:</span>
-            <span class="c1"># Audiencia base del partido.</span>
-            <span class="n">Audiencia_base</span> <span class="o">=</span> <span class="n">partidos</span><span class="p">[</span><span class="n">id_partido</span><span class="p">][</span><span class="s1">'base'</span><span class="p">]</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="n">partidos</span><span class="p">[</span><span class="n">id_partido</span><span class="p">][</span><span class="s1">'base'</span><span class="p">]</span> <span class="o">*</span> <span class="n">coef_horario</span> <span class="o">*</span> <span class="n">factor_penalizacion</span>
 
-            <span class="c1"># Audiencia final por partido</span>
-            <span class="n">audiencia</span> <span class="o">=</span> <span class="n">Audiencia_base</span> <span class="o">*</span> <span class="n">coef_horario</span> <span class="o">*</span> <span class="n">factor_penalizacion</span>
-
-            <span class="c1"># Acumulamos para todos los partidos (función objetivo)</span>
-            <span class="n">total</span> <span class="o">+=</span> <span class="n">audiencia</span>
-
-    <span class="c1"># Devolvemos la audiencia total.</span>
     <span class="k">return</span> <span class="n">total</span>
 </pre></div>
 </div>
@@ -8377,27 +8371,13 @@ Al menos 1 partido debe jugarse el lunes a las 20:00.</br></br></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">restricciones</span><span class="p">(</span><span class="n">asignacion</span><span class="p">):</span>
-    <span class="c1">#Inicializamos</span>
-    <span class="n">existe_viernes</span> <span class="o">=</span> <span class="kc">False</span>  
-    <span class="n">existe_lunes</span> <span class="o">=</span> <span class="kc">False</span>  
-
-    <span class="c1"># Recorremos todos los indices de los horarios asignados.</span>
-    <span class="k">for</span> <span class="n">id_horario</span> <span class="ow">in</span> <span class="n">asignacion</span><span class="p">:</span>
-        <span class="c1"># Obtenemos el día del horario (primer elemento de la tupla de horarios).</span>
-        <span class="n">dia</span> <span class="o">=</span> <span class="n">horarios</span><span class="p">[</span><span class="n">id_horario</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-
-        <span class="c1"># Verificación</span>
-        <span class="k">if</span> <span class="n">dia</span> <span class="o">==</span> <span class="s1">'Viernes'</span><span class="p">:</span>
-            <span class="n">existe_viernes</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">elif</span> <span class="n">dia</span> <span class="o">==</span> <span class="s1">'Lunes'</span><span class="p">:</span>
-            <span class="n">existe_lunes</span> <span class="o">=</span> <span class="kc">True</span>
-
-    <span class="c1"># Devolvemos el AND como TRUE solo si se cumplen ambas restricciones.</span>
-    <span class="k">return</span> <span class="n">existe_viernes</span> <span class="ow">and</span> <span class="n">existe_lunes</span>
+    <span class="c1"># Días en los que hay al menos un partido (ignoramos los no asignados: -1)</span>
+    <span class="n">dias</span> <span class="o">=</span> <span class="p">{</span><span class="n">horarios</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">asignacion</span> <span class="k">if</span> <span class="n">h</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
+    <span class="k">return</span> <span class="s1">'Viernes'</span> <span class="ow">in</span> <span class="n">dias</span> <span class="ow">and</span> <span class="s1">'Lunes'</span> <span class="ow">in</span> <span class="n">dias</span>
 </pre></div>
 </div>
 </div>
@@ -8456,7 +8436,7 @@ En nuestro caso para los 10 partidos y 10 horarios, tendríamos la siguiente ló
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">algoritmo_fuerzabruta</span><span class="p">():</span>
@@ -8549,35 +8529,41 @@ En nuestro caso para los 10 partidos y 10 horarios, tendríamos la siguiente ló
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Por fuerza bruta con 10 partidos, como hemos calculado, el espacio de búsqueda es mas de 4.1 millones de combinaciones, por lo que la ejecución completa no es viable en un ordenador convencional.
+<p>Por fuerza bruta con 10 partidos, como hemos calculado, el espacio de búsqueda es mas de 4.100 millones de combinaciones, por lo que la ejecución completa no es viable en un ordenador convencional.
 Pero podemos plantear el código para mostrar los resultados del algoritmo:</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Seguridad para que se ejecute solo cuando el script corra localmente (no cuando se importa como módulo).</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Seguridad para que se ejecute solo cuando el script corra localmente.</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-    <span class="c1"># Ejecutamos el algoritmo de fuerza bruta y guardamos los resultados.</span>
-    <span class="n">mejor_asignacion</span><span class="p">,</span> <span class="n">mejor_audiencia</span><span class="p">,</span> <span class="n">evaluaciones</span> <span class="o">=</span> <span class="n">algoritmo_fuerzabruta</span><span class="p">()</span>
-
-    <span class="c1"># Mostramos un resumen de los resultados.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Asignaciones evaluadas: </span><span class="si">{</span><span class="n">evaluaciones</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mejor audiencia: </span><span class="si">{</span><span class="n">mejor_audiencia</span><span class="si">}</span><span class="s2"> millones"</span><span class="p">)</span>
-
-    <span class="c1"># Mostramos la mejor asignación encontrada para todos los partidos</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">id_horario</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mejor_asignacion</span><span class="p">):</span>
-        <span class="n">partido</span> <span class="o">=</span> <span class="n">partidos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">horario</span> <span class="o">=</span> <span class="n">horarios</span><span class="p">[</span><span class="n">id_horario</span><span class="p">]</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">partido</span><span class="p">[</span><span class="s1">'local'</span><span class="p">]</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">partido</span><span class="p">[</span><span class="s1">'visitante'</span><span class="p">]</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">horario</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="c1"># Ejemplo: Celta vs Real Madrid → ('Viernes', 20)</span>
-        
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"ADVERTENCIA: La ejecución completa de fuerza bruta para N=10 tomará horas/días."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Se omite la ejecución de algoritmo_fuerzabruta() en este bloque para evitar bloqueos."</span><span class="p">)</span>
+    <span class="c1"># mejor_asignacion, mejor_audiencia, evaluaciones = algoritmo_fuerzabruta()</span>
+    <span class="c1"># print(f"Asignaciones evaluadas: {evaluaciones}")</span>
+    <span class="c1"># print(f"Mejor audiencia: {mejor_audiencia} millones")</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>ADVERTENCIA: La ejecución completa de fuerza bruta para N=10 tomará horas/días.
+Se omite la ejecución de algoritmo_fuerzabruta() en este bloque para evitar bloqueos.
+</pre>
 </div>
 </div>
 </div>
@@ -8612,13 +8598,13 @@ Pero podemos plantear el código para mostrar los resultados del algoritmo:</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<blockquote>
 <p>Determinando el total de combinaciones sin restricciones:
-Hay $N=10$ partidos y $H=10$ horarios.
-Cada partido puede ir a cualquiera de los $H$ horarios.
-Por lo tanto, el número total de combinaciones es: $H^N$.</p>
-<p>Para evaluar cada combinación, realizamos recorridos proporcionales a $N$ (construir asignación, agrupar, calcular penalizaciones y verificar restricciones). Esto añade un factor lineal $O(N)$.</p>
-<p>Por lo tanto, la complejidad temporal exacta del algoritmo de fuerza bruta es <strong>$O(H^N \cdot N)$</strong>.</p>
-<p>En este caso particular donde $H=10$ y $N=10$, resulta en $O(10^{10} \cdot 10) = O(10^{11})$ operaciones. Si el número de horarios se mantuviera constante y aumentaran los partidos, la complejidad crecería exponencialmente respecto a $N$.</p>
+Sea $N$ el número de partidos y $H$ el número de horarios.
+Cada partido puede ir a cualquiera de los $H$ horarios. Por lo tanto, el tamaño del espacio de búsqueda es $H^N$.</p>
+<p>Para evaluar cada combinación, el algoritmo realiza operaciones proporcionales a $N$ (agrupar partidos, calcular penalizaciones y verificar restricciones). Esto añade un factor lineal $O(N)$.</p>
+<p>Por lo tanto, la complejidad temporal asintótica exacta del algoritmo de fuerza bruta es <strong>$O(H^N \cdot N)$</strong>. Para la instancia específica de este problema ($N=10, H=10$), el algoritmo realizará un número de operaciones proporcional a $10^{11}$.</p>
+</blockquote>
 </div>
 </div>
 </div>
@@ -8645,75 +8631,6 @@ Por lo tanto, el número total de combinaciones es: $H^N$.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">algoritmo_heuristico</span><span class="p">(</span><span class="n">lista_partidos</span><span class="p">):</span>
-    <span class="c1"># 1. FASE GREEDY (Construcción inicial)</span>
-    <span class="c1"># Ordenar los partidos por su audiencia base (de menor a mayor)</span>
-    <span class="n">partidos_ordenados</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">lista_partidos</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s1">'base'</span><span class="p">])</span>
-    
-    <span class="c1"># Ordenar los índices de horarios por su coeficiente (de mayor a menor)</span>
-    <span class="c1"># horarios = [(0: V20), (1: S12), ..., (9: L20)]</span>
-    <span class="n">indices_horarios</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">horarios</span><span class="p">)))</span>
-    <span class="n">indices_horarios</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">coeficientes</span><span class="p">[</span><span class="n">horarios</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
-    <span class="n">asignacion</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">lista_partidos</span><span class="p">)</span>
-    
-    <span class="c1"># Restricciones obligatorias: Asignar los dos partidos con peor base al Viernes(0) y Lunes(9)</span>
-    <span class="n">asignacion</span><span class="p">[</span><span class="n">partidos_ordenados</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">asignacion</span><span class="p">[</span><span class="n">partidos_ordenados</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">9</span>
-    
-    <span class="c1"># Asignar el resto a los mejores horarios disponibles (evitando repetir para minimizar penalización)</span>
-    <span class="n">horarios_disponibles</span> <span class="o">=</span> <span class="p">[</span><span class="n">h</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">indices_horarios</span> <span class="k">if</span> <span class="n">h</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
-    
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">partidos_ordenados</span><span class="p">)):</span>
-        <span class="c1"># Repartimos cíclicamente entre los mejores horarios</span>
-        <span class="n">idx_horario</span> <span class="o">=</span> <span class="n">horarios_disponibles</span><span class="p">[(</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">horarios_disponibles</span><span class="p">)]</span>
-        <span class="n">asignacion</span><span class="p">[</span><span class="n">partidos_ordenados</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]]</span> <span class="o">=</span> <span class="n">idx_horario</span>
-        
-    <span class="n">mejor_audiencia</span> <span class="o">=</span> <span class="n">calcular_audiencia</span><span class="p">(</span><span class="n">asignacion</span><span class="p">)</span>
-    
-    <span class="c1"># 2. FASE DE BÚSQUEDA LOCAL (Hill Climbing)</span>
-    <span class="n">mejora</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">while</span> <span class="n">mejora</span><span class="p">:</span>
-        <span class="n">mejora</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">for</span> <span class="n">id_partido</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lista_partidos</span><span class="p">)):</span>
-            <span class="n">horario_actual</span> <span class="o">=</span> <span class="n">asignacion</span><span class="p">[</span><span class="n">id_partido</span><span class="p">]</span>
-            
-            <span class="k">for</span> <span class="n">nuevo_horario</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">horarios</span><span class="p">)):</span>
-                <span class="k">if</span> <span class="n">nuevo_horario</span> <span class="o">==</span> <span class="n">horario_actual</span><span class="p">:</span>
-                    <span class="k">continue</span>
-                
-                <span class="c1"># Probar el movimiento</span>
-                <span class="n">asignacion</span><span class="p">[</span><span class="n">id_partido</span><span class="p">]</span> <span class="o">=</span> <span class="n">nuevo_horario</span>
-                
-                <span class="c1"># Si el movimiento rompe las restricciones, se descarta</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">restricciones</span><span class="p">(</span><span class="n">asignacion</span><span class="p">):</span>
-                    <span class="n">asignacion</span><span class="p">[</span><span class="n">id_partido</span><span class="p">]</span> <span class="o">=</span> <span class="n">horario_actual</span>
-                    <span class="k">continue</span>
-                
-                <span class="n">nueva_audiencia</span> <span class="o">=</span> <span class="n">calcular_audiencia</span><span class="p">(</span><span class="n">asignacion</span><span class="p">)</span>
-                
-                <span class="k">if</span> <span class="n">nueva_audiencia</span> <span class="o">&gt;</span> <span class="n">mejor_audiencia</span><span class="p">:</span>
-                    <span class="n">mejor_audiencia</span> <span class="o">=</span> <span class="n">nueva_audiencia</span>
-                    <span class="n">horario_actual</span> <span class="o">=</span> <span class="n">nuevo_horario</span> <span class="c1"># Consolidar el cambio</span>
-                    <span class="n">mejora</span> <span class="o">=</span> <span class="kc">True</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="c1"># Revertir el cambio si no mejora</span>
-                    <span class="n">asignacion</span><span class="p">[</span><span class="n">id_partido</span><span class="p">]</span> <span class="o">=</span> <span class="n">horario_actual</span>
-                    
-    <span class="k">return</span> <span class="n">asignacion</span><span class="p">,</span> <span class="n">mejor_audiencia</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -8722,12 +8639,67 @@ Por lo tanto, el número total de combinaciones es: $H^N$.</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><strong>Argumentación de la mejora:</strong>
-El algoritmo de fuerza bruta evalúa a ciegas todo el espacio de búsqueda ($10^{10}$ estados). Para mejorar drásticamente la complejidad, se implementa un algoritmo heurístico basado en dos fases:</p>
-<ol>
-<li><strong>Fase Constructiva (Greedy):</strong> Construye una solución inicial lógica. Asigna los partidos con menor audiencia base a los horarios obligatorios y de menor coeficiente (Viernes y Lunes), y reparte el resto en los mejores horarios evitando coincidencias iniciales.</li>
-<li><strong>Búsqueda Local (Hill Climbing):</strong> Partiendo de la solución Greedy, explora el vecindario cambiando un partido de horario a la vez. Si el cambio mejora la audiencia total, se acepta. Esto se repite hasta llegar a un óptimo local.</li>
-</ol>
-<p>Esto mejora el algoritmo porque descarta la exploración de millones de combinaciones subóptimas, guiando la búsqueda mediante el gradiente de mejora de la función objetivo.</p>
+El algoritmo de fuerza bruta explora a ciegas todo el espacio de búsqueda. Un Hill Climbing simple es insuficiente porque se atasca fácilmente en óptimos locales al no tener visión a futuro.</p>
+<p>Para solucionar esto e incorporar un estimador en un árbol de expansión, implementamos un algoritmo de <strong>Búsqueda en Haz (Beam Search)</strong>. Este algoritmo construye la solución nivel por nivel (partido a partido). En lugar de expandir todos los nodos (como haría BFS o Fuerza Bruta), utiliza una <strong>función heurística (estimador)</strong> para evaluar el potencial de las asignaciones parciales. En cada nivel, solo conserva los $W$ mejores nodos (Beam Width o anchura del haz), podando el resto del árbol.</p>
+<p>El estimador calcula la audiencia real de los partidos ya asignados y suma una estimación optimista (audiencia máxima posible sin penalizaciones) para los partidos aún no asignados. Esto mejora radicalmente la complejidad porque poda ramas subóptimas tempranamente, pero explora con mayor profundidad y amplitud que una simple búsqueda local.</p>
+<p>Además se incorpora una poda de factibilidad que descarta nodos que ya no pueden satisfacer las restricciones de viernes y lunes.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">estimador_heuristico</span><span class="p">(</span><span class="n">asignacion_parcial</span><span class="p">):</span>
+    <span class="c1"># 1. Audiencia real de los partidos ya asignados</span>
+    <span class="n">audiencia_actual</span> <span class="o">=</span> <span class="n">calcular_audiencia</span><span class="p">(</span><span class="n">asignacion_parcial</span><span class="p">)</span>
+    <span class="c1"># 2. Cota optimista de los restantes: coef 1.0 y sin coincidencias</span>
+    <span class="n">estimacion_futura</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">partidos</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'base'</span><span class="p">]</span>
+                            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">asignacion_parcial</span><span class="p">)</span> <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">audiencia_actual</span> <span class="o">+</span> <span class="n">estimacion_futura</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">algoritmo_beam_search</span><span class="p">(</span><span class="n">lista_partidos</span><span class="p">,</span> <span class="n">beam_width</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lista_partidos</span><span class="p">)</span>
+    <span class="n">estado_inicial</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="n">haz</span> <span class="o">=</span> <span class="p">[(</span><span class="n">estimador_heuristico</span><span class="p">(</span><span class="n">estado_inicial</span><span class="p">),</span> <span class="n">estado_inicial</span><span class="p">)]</span>
+
+    <span class="c1"># Expandimos primero los partidos más valiosos</span>
+    <span class="n">orden_partidos</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">lista_partidos</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'base'</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">nivel</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">id_partido_actual</span> <span class="o">=</span> <span class="n">orden_partidos</span><span class="p">[</span><span class="n">nivel</span><span class="p">]</span>
+        <span class="n">partidos_restantes</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">nivel</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">nuevos_estados</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">estado</span> <span class="ow">in</span> <span class="n">haz</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">id_horario</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">horarios</span><span class="p">)):</span>
+                <span class="n">nuevo_estado</span> <span class="o">=</span> <span class="n">estado</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">nuevo_estado</span><span class="p">[</span><span class="n">id_partido_actual</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_horario</span>
+
+                <span class="c1"># PODA DE FACTIBILIDAD: si faltan más días obligatorios (viernes/lunes)</span>
+                <span class="c1"># que partidos por asignar, este nodo nunca llegará a una solución válida.</span>
+                <span class="n">dias</span> <span class="o">=</span> <span class="p">{</span><span class="n">horarios</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">nuevo_estado</span> <span class="k">if</span> <span class="n">h</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
+                <span class="n">faltan</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'Viernes'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dias</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="s1">'Lunes'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dias</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">faltan</span> <span class="o">&gt;</span> <span class="n">partidos_restantes</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="n">nuevos_estados</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">estimador_heuristico</span><span class="p">(</span><span class="n">nuevo_estado</span><span class="p">),</span> <span class="n">nuevo_estado</span><span class="p">))</span>
+
+        <span class="n">nuevos_estados</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">haz</span> <span class="o">=</span> <span class="n">nuevos_estados</span><span class="p">[:</span><span class="n">beam_width</span><span class="p">]</span>
+
+    <span class="n">soluciones_validas</span> <span class="o">=</span> <span class="p">[(</span><span class="n">calcular_audiencia</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">haz</span> <span class="k">if</span> <span class="n">restricciones</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">soluciones_validas</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">soluciones_validas</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">mejor_audiencia</span><span class="p">,</span> <span class="n">mejor_estado</span> <span class="o">=</span> <span class="n">soluciones_validas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">mejor_estado</span><span class="p">,</span> <span class="n">mejor_audiencia</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -8761,13 +8733,113 @@ El algoritmo de fuerza bruta evalúa a ciegas todo el espacio de búsqueda ($10^
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<ol>
-<li><strong>Fase Greedy:</strong> Ordenar los partidos cuesta $O(N \log N)$. La asignación inicial cuesta $O(N)$.</li>
-<li><strong>Fase Búsqueda Local:</strong> En cada iteración del bucle <code>while</code>, se prueban $N \times (H-1)$ vecinos. Evaluar cada vecino (con la función <code>calcular_audiencia</code>) cuesta $O(N)$. Por lo tanto, cada iteración completa del vecindario cuesta $O(N^2 \cdot H)$.
-Si el algoritmo converge en $K$ iteraciones (donde $K$ suele ser un número pequeño), la complejidad de esta fase es $O(K \cdot N^2 \cdot H)$.</li>
-</ol>
-<p><strong>Complejidad Total:</strong> $O(N \log N + K \cdot N^2 \cdot H)$.
-Para $N=10$ y $H=10$, el algoritmo se ejecuta en tiempo casi constante (milisegundos), lo que supone una reducción drástica frente a la complejidad exponencial $O(H^N \cdot N)$ de la fuerza bruta.</p>
+<p>La complejidad del Beam Search depende del número de partidos ($N$), el número de horarios ($H$) y la anchura del haz ($W$).
+El árbol tiene $N$ niveles. En cada nivel, expandimos los $W$ estados probando los $H$ horarios, generando $W \cdot H$ nuevos nodos. Evaluar el estimador cuesta $O(N)$. Ordenar los nodos cuesta $O((W \cdot H) \log(W \cdot H))$.</p>
+<p>Fórmula explícita: <strong>$O(N \cdot [N \cdot W \cdot H + (W \cdot H) \log(W \cdot H)])$</strong></p>
+<p>Para $N=10, H=10, W=10$:
+En el primer nivel se generan 10 nodos y en cada uno de los 9 siguientes, 100. El total es 10 + 9×100 = 910 evaluaciones como máximo (menos con la poda de factibilidad).
+Comparado con las $10^{10}$ evaluaciones de la fuerza bruta, la reducción del espacio de búsqueda es masiva. Al ser una heurística, no garantiza el óptimo global matemático, pero esta reducción radical permite encontrar soluciones de altísima calidad en milisegundos.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Comparativa-de-%C3%93ptimos:-Fuerza-Bruta-vs-Heur%C3%ADstica-(Problema-Reducido)">Comparativa de Óptimos: Fuerza Bruta vs Heurística (Problema Reducido)<a class="anchor-link" href="#Comparativa-de-%C3%93ptimos:-Fuerza-Bruta-vs-Heur%C3%ADstica-(Problema-Reducido)">¶</a></h3><p>Para validar la eficacia del estimador y del árbol de expansión propuesto, reducimos el problema a 6 partidos y los 10 horarios (10⁶ = 1.000.000 combinaciones). Esto permite que la fuerza bruta termine en pocos segundos y podamos comparar si el Beam Search alcanza el óptimo global.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="c1"># --- COMPARATIVA SÓLIDA (N=6, H=10) ---</span>
+<span class="c1"># Usamos 6 partidos y los 10 horarios. Espacio de búsqueda: 10^6 = 1.000.000 combinaciones.</span>
+<span class="n">partidos_reducidos</span> <span class="o">=</span> <span class="n">partidos</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span> 
+
+<span class="n">partidos_originales</span> <span class="o">=</span> <span class="n">partidos</span>
+<span class="n">partidos</span> <span class="o">=</span> <span class="n">partidos_reducidos</span>
+
+<span class="c1"># 1. Fuerza Bruta (Adaptada a N=6)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">bf_reducida</span><span class="p">():</span>
+    <span class="n">mejor_asig</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">mejor_aud</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">asig</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">6</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="n">idx</span><span class="p">):</span>
+        <span class="k">nonlocal</span> <span class="n">mejor_asig</span><span class="p">,</span> <span class="n">mejor_aud</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">restricciones</span><span class="p">(</span><span class="n">asig</span><span class="p">):</span>
+                <span class="n">aud</span> <span class="o">=</span> <span class="n">calcular_audiencia</span><span class="p">(</span><span class="n">asig</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">aud</span> <span class="o">&gt;</span> <span class="n">mejor_aud</span><span class="p">:</span>
+                    <span class="n">mejor_aud</span> <span class="o">=</span> <span class="n">aud</span>
+                    <span class="n">mejor_asig</span> <span class="o">=</span> <span class="n">asig</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">horarios</span><span class="p">)):</span>
+            <span class="n">asig</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span>
+            <span class="n">backtrack</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">backtrack</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mejor_asig</span><span class="p">,</span> <span class="n">mejor_aud</span>
+
+<span class="n">inicio_bf</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">optimo_bf_asig</span><span class="p">,</span> <span class="n">optimo_bf_aud</span> <span class="o">=</span> <span class="n">bf_reducida</span><span class="p">()</span>
+<span class="n">tiempo_bf</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">inicio_bf</span>
+
+<span class="c1"># 2. Heurística (Beam Search)</span>
+<span class="n">inicio_bs</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">optimo_bs_asig</span><span class="p">,</span> <span class="n">optimo_bs_aud</span> <span class="o">=</span> <span class="n">algoritmo_beam_search</span><span class="p">(</span><span class="n">partidos</span><span class="p">,</span> <span class="n">beam_width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">tiempo_bs</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">inicio_bs</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"--- COMPARATIVA EN PROBLEMA REDUCIDO (N=6, H=10) ---"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Fuerza Bruta -&gt; Óptimo: </span><span class="si">{</span><span class="n">optimo_bf_aud</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> Millones | Tiempo: </span><span class="si">{</span><span class="n">tiempo_bf</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> seg"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Beam Search  -&gt; Óptimo: </span><span class="si">{</span><span class="n">optimo_bs_aud</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> Millones | Tiempo: </span><span class="si">{</span><span class="n">tiempo_bs</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> seg"</span><span class="p">)</span>
+
+<span class="c1"># Corrección: Comparación segura de floats</span>
+<span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">optimo_bf_aud</span><span class="p">,</span> <span class="n">optimo_bs_aud</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Resultado: La heurística HA ENCONTRADO el óptimo global matemático."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Resultado: La heurística se ha quedado en un óptimo local."</span><span class="p">)</span>
+
+<span class="n">partidos</span> <span class="o">=</span> <span class="n">partidos_originales</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>--- COMPARATIVA EN PROBLEMA REDUCIDO (N=6, H=10) ---
+Fuerza Bruta -&gt; Óptimo: 4.6810 Millones | Tiempo: 1.0187 seg
+Beam Search  -&gt; Óptimo: 4.6810 Millones | Tiempo: 0.0013 seg
+Resultado: La heurística HA ENCONTRADO el óptimo global matemático.
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -8799,52 +8871,43 @@ Para $N=10$ y $H=10$, el algoritmo se ejecuta en tiempo casi constante (milisegu
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Para generar datos aleatorios, necesitamos reconstruir la audiencia base a partir de las categorías de los equipos</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
-
-<span class="c1"># Diccionario de audiencias base según categorías (extraído de la tabla del problema)</span>
-<span class="c1"># Nota: C-C = 0.47 extraído de la tabla de ejemplo (Mallorca vs Eibar)</span>
 <span class="n">audiencias_cat</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">(</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">):</span> <span class="mf">2.0</span><span class="p">,</span> <span class="p">(</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">):</span> <span class="mf">1.3</span><span class="p">,</span> <span class="p">(</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="p">(</span><span class="s1">'B'</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">):</span> <span class="mf">1.3</span><span class="p">,</span> <span class="p">(</span><span class="s1">'B'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">):</span> <span class="mf">0.9</span><span class="p">,</span> <span class="p">(</span><span class="s1">'B'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">):</span> <span class="mf">0.75</span><span class="p">,</span>
     <span class="p">(</span><span class="s1">'C'</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span> <span class="p">(</span><span class="s1">'C'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">):</span> <span class="mf">0.75</span><span class="p">,</span> <span class="p">(</span><span class="s1">'C'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">):</span> <span class="mf">0.47</span>
 <span class="p">}</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">generar_jornada_aleatoria</span><span class="p">():</span>
-    <span class="c1"># Distribución oficial de equipos: 3(A), 11(B), 6(C)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generar_jornada_aleatoria</span><span class="p">(</span><span class="n">semilla</span><span class="p">):</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">semilla</span><span class="p">)</span>
     <span class="n">categorias_disponibles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'A'</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span> <span class="p">[</span><span class="s1">'B'</span><span class="p">]</span><span class="o">*</span><span class="mi">11</span> <span class="o">+</span> <span class="p">[</span><span class="s1">'C'</span><span class="p">]</span><span class="o">*</span><span class="mi">6</span>
     <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">categorias_disponibles</span><span class="p">)</span>
-    
-    <span class="n">jornada_aleatoria</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">jornada</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">id_partido</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
         <span class="n">cat_local</span> <span class="o">=</span> <span class="n">categorias_disponibles</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
         <span class="n">cat_visitante</span> <span class="o">=</span> <span class="n">categorias_disponibles</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-        
-        <span class="c1"># Buscar audiencia base (manejando el orden de la tupla)</span>
+
         <span class="n">tupla_cat</span> <span class="o">=</span> <span class="p">(</span><span class="n">cat_local</span><span class="p">,</span> <span class="n">cat_visitante</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">tupla_cat</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">audiencias_cat</span><span class="p">:</span>
             <span class="n">tupla_cat</span> <span class="o">=</span> <span class="p">(</span><span class="n">cat_visitante</span><span class="p">,</span> <span class="n">cat_local</span><span class="p">)</span>
-            
-        <span class="n">base</span> <span class="o">=</span> <span class="n">audiencias_cat</span><span class="p">[</span><span class="n">tupla_cat</span><span class="p">]</span>
-        
-        <span class="n">jornada_aleatoria</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s1">'id'</span><span class="p">:</span> <span class="n">id_partido</span><span class="p">,</span>
-            <span class="s1">'local'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Equipo_</span><span class="si">{</span><span class="n">id_partido</span><span class="si">}</span><span class="s1">_L'</span><span class="p">,</span>
-            <span class="s1">'visitante'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Equipo_</span><span class="si">{</span><span class="n">id_partido</span><span class="si">}</span><span class="s1">_V'</span><span class="p">,</span>
-            <span class="s1">'categorias'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">cat_local</span><span class="si">}</span><span class="s1">-</span><span class="si">{</span><span class="n">cat_visitante</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
-            <span class="s1">'base'</span><span class="p">:</span> <span class="n">base</span>
-        <span class="p">})</span>
-        
-    <span class="k">return</span> <span class="n">jornada_aleatoria</span>
 
-<span class="c1"># Generar y mostrar los datos</span>
-<span class="n">partidos_aleatorios</span> <span class="o">=</span> <span class="n">generar_jornada_aleatoria</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">partidos_aleatorios</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">jornada</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">'id'</span><span class="p">:</span> <span class="n">id_partido</span><span class="p">,</span>
+            <span class="s1">'local'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Eq_</span><span class="si">{</span><span class="n">id_partido</span><span class="si">}</span><span class="s1">_L'</span><span class="p">,</span>
+            <span class="s1">'visitante'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Eq_</span><span class="si">{</span><span class="n">id_partido</span><span class="si">}</span><span class="s1">_V'</span><span class="p">,</span>
+            <span class="s1">'categorias'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">cat_local</span><span class="si">}</span><span class="s1">-</span><span class="si">{</span><span class="n">cat_visitante</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+            <span class="s1">'base'</span><span class="p">:</span> <span class="n">audiencias_cat</span><span class="p">[</span><span class="n">tupla_cat</span><span class="p">]</span>
+        <span class="p">})</span>
+    <span class="k">return</span> <span class="n">jornada</span>
+
+<span class="c1"># Generamos 3 juegos de datos diferentes para probar la robustez</span>
+<span class="n">juegos_de_datos</span> <span class="o">=</span> <span class="p">[</span><span class="n">generar_jornada_aleatoria</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span> <span class="k">for</span> <span class="n">seed</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">999</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Se han generado 3 juegos de datos aleatorios."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8857,16 +8920,7 @@ Para $N=10$ y $H=10$, el algoritmo se ejecuta en tiempo casi constante (milisegu
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>{'id': 0, 'local': 'Equipo_0_L', 'visitante': 'Equipo_0_V', 'categorias': 'A-A', 'base': 2.0}
-{'id': 1, 'local': 'Equipo_1_L', 'visitante': 'Equipo_1_V', 'categorias': 'A-B', 'base': 1.3}
-{'id': 2, 'local': 'Equipo_2_L', 'visitante': 'Equipo_2_V', 'categorias': 'B-C', 'base': 0.75}
-{'id': 3, 'local': 'Equipo_3_L', 'visitante': 'Equipo_3_V', 'categorias': 'B-C', 'base': 0.75}
-{'id': 4, 'local': 'Equipo_4_L', 'visitante': 'Equipo_4_V', 'categorias': 'C-B', 'base': 0.75}
-{'id': 5, 'local': 'Equipo_5_L', 'visitante': 'Equipo_5_V', 'categorias': 'B-C', 'base': 0.75}
-{'id': 6, 'local': 'Equipo_6_L', 'visitante': 'Equipo_6_V', 'categorias': 'B-B', 'base': 0.9}
-{'id': 7, 'local': 'Equipo_7_L', 'visitante': 'Equipo_7_V', 'categorias': 'B-C', 'base': 0.75}
-{'id': 8, 'local': 'Equipo_8_L', 'visitante': 'Equipo_8_V', 'categorias': 'B-B', 'base': 0.9}
-{'id': 9, 'local': 'Equipo_9_L', 'visitante': 'Equipo_9_V', 'categorias': 'B-C', 'base': 0.75}
+<pre>Se han generado 3 juegos de datos aleatorios.
 </pre>
 </div>
 </div>
@@ -8900,22 +8954,22 @@ Para $N=10$ y $H=10$, el algoritmo se ejecuta en tiempo casi constante (milisegu
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Sobrescribimos la variable global 'partidos' para que las funciones </span>
-<span class="c1"># calcular_audiencia y algoritmo_heuristico utilicen los nuevos datos</span>
-<span class="n">partidos</span> <span class="o">=</span> <span class="n">partidos_aleatorios</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">jornada</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">juegos_de_datos</span><span class="p">):</span>
+    <span class="n">partidos</span> <span class="o">=</span> <span class="n">jornada</span>
+    <span class="n">asignacion_optima</span><span class="p">,</span> <span class="n">audiencia_max</span> <span class="o">=</span> <span class="n">algoritmo_beam_search</span><span class="p">(</span><span class="n">partidos</span><span class="p">,</span> <span class="n">beam_width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 
-<span class="n">asignacion_optima</span><span class="p">,</span> <span class="n">audiencia_max</span> <span class="o">=</span> <span class="n">algoritmo_heuristico</span><span class="p">(</span><span class="n">partidos</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- RESULTADOS BÚSQUEDA LOCAL (Datos Aleatorios) ---"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Audiencia máxima estimada: </span><span class="si">{</span><span class="n">audiencia_max</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Millones</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">id_partido</span><span class="p">,</span> <span class="n">id_horario</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">asignacion_optima</span><span class="p">):</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">partidos</span><span class="p">[</span><span class="n">id_partido</span><span class="p">]</span>
-    <span class="n">h</span> <span class="o">=</span> <span class="n">horarios</span><span class="p">[</span><span class="n">id_horario</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">'categorias'</span><span class="p">]</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">'local'</span><span class="p">]</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">'visitante'</span><span class="p">]</span><span class="si">}</span><span class="s2"> -&gt; Asignado a: </span><span class="si">{</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">:00 (Base: </span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">'base'</span><span class="p">]</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- RESULTADOS BEAM SEARCH - JUEGO DE DATOS </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> ---"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">asignacion_optima</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mejor audiencia encontrada: </span><span class="si">{</span><span class="n">audiencia_max</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> Millones"</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">id_partido</span><span class="p">,</span> <span class="n">id_horario</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">asignacion_optima</span><span class="p">):</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">partidos</span><span class="p">[</span><span class="n">id_partido</span><span class="p">]</span>
+            <span class="n">dia</span><span class="p">,</span> <span class="n">hora</span> <span class="o">=</span> <span class="n">horarios</span><span class="p">[</span><span class="n">id_horario</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  [</span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">'categorias'</span><span class="p">]</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">'local'</span><span class="p">]</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">'visitante'</span><span class="p">]</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">dia</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">hora</span><span class="si">}</span><span class="s2">:00 (base </span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">'base'</span><span class="p">]</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"No se encontró solución válida."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8929,21 +8983,93 @@ Para $N=10$ y $H=10$, el algoritmo se ejecuta en tiempo casi constante (milisegu
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
---- RESULTADOS BÚSQUEDA LOCAL (Datos Aleatorios) ---
-Audiencia máxima estimada: 7.19 Millones
+--- RESULTADOS BEAM SEARCH - JUEGO DE DATOS 1 ---
+Mejor audiencia encontrada: 6.7130 Millones
+  [B-A] Eq_0_L vs Eq_0_V -&gt; Sábado 20:00 (base 1.3)
+  [B-B] Eq_1_L vs Eq_1_V -&gt; Sábado 18:00 (base 0.9)
+  [C-A] Eq_2_L vs Eq_2_V -&gt; Domingo 18:00 (base 1.0)
+  [B-A] Eq_3_L vs Eq_3_V -&gt; Domingo 20:00 (base 1.3)
+  [B-C] Eq_4_L vs Eq_4_V -&gt; Sábado 12:00 (base 0.75)
+  [B-B] Eq_5_L vs Eq_5_V -&gt; Domingo 16:00 (base 0.9)
+  [C-C] Eq_6_L vs Eq_6_V -&gt; Lunes 20:00 (base 0.47)
+  [B-B] Eq_7_L vs Eq_7_V -&gt; Sábado 16:00 (base 0.9)
+  [B-C] Eq_8_L vs Eq_8_V -&gt; Domingo 12:00 (base 0.75)
+  [B-C] Eq_9_L vs Eq_9_V -&gt; Viernes 20:00 (base 0.75)
 
-[A-A] Equipo_0_L vs Equipo_0_V -&gt; Asignado a: Sábado 20:00 (Base: 2.0)
-[A-B] Equipo_1_L vs Equipo_1_V -&gt; Asignado a: Domingo 20:00 (Base: 1.3)
-[B-C] Equipo_2_L vs Equipo_2_V -&gt; Asignado a: Viernes 20:00 (Base: 0.75)
-[B-C] Equipo_3_L vs Equipo_3_V -&gt; Asignado a: Lunes 20:00 (Base: 0.75)
-[C-B] Equipo_4_L vs Equipo_4_V -&gt; Asignado a: Sábado 12:00 (Base: 0.75)
-[B-C] Equipo_5_L vs Equipo_5_V -&gt; Asignado a: Domingo 12:00 (Base: 0.75)
-[B-B] Equipo_6_L vs Equipo_6_V -&gt; Asignado a: Domingo 16:00 (Base: 0.9)
-[B-C] Equipo_7_L vs Equipo_7_V -&gt; Asignado a: Domingo 18:00 (Base: 0.75)
-[B-B] Equipo_8_L vs Equipo_8_V -&gt; Asignado a: Sábado 16:00 (Base: 0.9)
-[B-C] Equipo_9_L vs Equipo_9_V -&gt; Asignado a: Sábado 18:00 (Base: 0.75)
+--- RESULTADOS BEAM SEARCH - JUEGO DE DATOS 2 ---
+Mejor audiencia encontrada: 6.7200 Millones
+  [B-C] Eq_0_L vs Eq_0_V -&gt; Sábado 16:00 (base 0.75)
+  [C-B] Eq_1_L vs Eq_1_V -&gt; Sábado 12:00 (base 0.75)
+  [B-B] Eq_2_L vs Eq_2_V -&gt; Domingo 16:00 (base 0.9)
+  [C-B] Eq_3_L vs Eq_3_V -&gt; Viernes 20:00 (base 0.75)
+  [B-A] Eq_4_L vs Eq_4_V -&gt; Sábado 20:00 (base 1.3)
+  [C-B] Eq_5_L vs Eq_5_V -&gt; Domingo 12:00 (base 0.75)
+  [B-B] Eq_6_L vs Eq_6_V -&gt; Sábado 18:00 (base 0.9)
+  [B-A] Eq_7_L vs Eq_7_V -&gt; Domingo 20:00 (base 1.3)
+  [A-C] Eq_8_L vs Eq_8_V -&gt; Domingo 18:00 (base 1.0)
+  [C-B] Eq_9_L vs Eq_9_V -&gt; Lunes 20:00 (base 0.75)
+
+--- RESULTADOS BEAM SEARCH - JUEGO DE DATOS 3 ---
+Mejor audiencia encontrada: 6.6835 Millones
+  [A-C] Eq_0_L vs Eq_0_V -&gt; Domingo 18:00 (base 1.0)
+  [C-C] Eq_1_L vs Eq_1_V -&gt; Viernes 20:00 (base 0.47)
+  [C-C] Eq_2_L vs Eq_2_V -&gt; Lunes 20:00 (base 0.47)
+  [B-B] Eq_3_L vs Eq_3_V -&gt; Domingo 16:00 (base 0.9)
+  [B-B] Eq_4_L vs Eq_4_V -&gt; Sábado 18:00 (base 0.9)
+  [A-B] Eq_5_L vs Eq_5_V -&gt; Sábado 20:00 (base 1.3)
+  [C-B] Eq_6_L vs Eq_6_V -&gt; Domingo 12:00 (base 0.75)
+  [B-A] Eq_7_L vs Eq_7_V -&gt; Domingo 20:00 (base 1.3)
+  [B-B] Eq_8_L vs Eq_8_V -&gt; Sábado 16:00 (base 0.9)
+  [B-B] Eq_9_L vs Eq_9_V -&gt; Sábado 12:00 (base 0.9)
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"--- VALIDACIÓN BF vs BEAM (N=6, H=10), 3 juegos aleatorios ---"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">semilla</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">999</span><span class="p">]:</span>
+    <span class="n">partidos</span> <span class="o">=</span> <span class="n">generar_jornada_aleatoria</span><span class="p">(</span><span class="n">semilla</span><span class="p">)[:</span><span class="mi">6</span><span class="p">]</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">();</span> <span class="n">a_bf</span><span class="p">,</span> <span class="n">v_bf</span> <span class="o">=</span> <span class="n">bf_reducida</span><span class="p">();</span> <span class="n">t_bf</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">();</span> <span class="n">a_bs</span><span class="p">,</span> <span class="n">v_bs</span> <span class="o">=</span> <span class="n">algoritmo_beam_search</span><span class="p">(</span><span class="n">partidos</span><span class="p">,</span> <span class="n">beam_width</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span> <span class="n">t_bs</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"semilla=</span><span class="si">{</span><span class="n">semilla</span><span class="si">:</span><span class="s2">&lt;4</span><span class="si">}</span><span class="s2"> BF=</span><span class="si">{</span><span class="n">v_bf</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> Beam=</span><span class="si">{</span><span class="n">v_bs</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> gap=</span><span class="si">{</span><span class="n">v_bf</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v_bs</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> "</span>
+          <span class="sa">f</span><span class="s2">"t_BF=</span><span class="si">{</span><span class="n">t_bf</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">s t_Beam=</span><span class="si">{</span><span class="n">t_bs</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">ms óptimo=</span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">v_bf</span><span class="p">,</span><span class="w"> </span><span class="n">v_bs</span><span class="p">,</span><span class="w"> </span><span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>--- VALIDACIÓN BF vs BEAM (N=6, H=10), 3 juegos aleatorios ---
+semilla=42   BF=4.8300 Beam=4.8300 gap=0.0000 t_BF=1.0s t_Beam=1.3ms óptimo=True
+semilla=100  BF=4.0375 Beam=4.0375 gap=0.0000 t_BF=1.0s t_Beam=1.3ms óptimo=True
+semilla=999  BF=4.1610 Beam=4.1610 gap=0.0000 t_BF=1.0s t_Beam=1.2ms óptimo=True
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Conclusión: en N=6, tanto en la jornada real como en los 3 juegos aleatorios, el Beam Search alcanzó el óptimo (gap 0) en ~1 ms frente a ~1 s de la fuerza bruta. En N=10 la fuerza bruta es inviable (≈4.100 millones de asignaciones válidas), por lo que el resultado es el mejor encontrado por la heurística, respaldado por la validación en tamaños reducidos.</p>
 </div>
 </div>
 </div>
@@ -8980,7 +9106,7 @@ Audiencia máxima estimada: 7.19 Millones
 <ul>
 <li>Brassard, G., y Bratley, P. (1997). <em>Fundamentos de algoritmia</em>.</li>
 <li>Documentación oficial de Python (estructuras de datos y librerías estándar): <a href="https://docs.python.org/3/">https://docs.python.org/3/</a></li>
-<li>Conceptos teóricos de metaheurísticas (Búsqueda Local / Hill Climbing) extraídos del material de la asignatura "Algoritmos de Optimización" (03MIAR).</li>
+<li>Conceptos teóricos de heurísticas basadas en árboles de expansión, estimadores y Búsqueda en Haz (Beam Search) extraídos del material de la asignatura "Algoritmos de Optimización" (03MIAR).</li>
 </ul>
 </div>
 </div>
@@ -9016,8 +9142,8 @@ Audiencia máxima estimada: 7.19 Millones
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <ol>
-<li><strong>Resolución Exacta (Programación Lineal Entera):</strong> Dado que el tamaño actual del problema es reducido ($N=10$), se podría modelar matemáticamente y resolver utilizando <em>solvers</em> como PuLP o Gurobi. Esto garantizaría encontrar el óptimo global matemático en fracciones de segundo, eliminando la incertidumbre de los óptimos locales de las heurísticas.</li>
-<li><strong>Escalabilidad a Temporadas Completas:</strong> Si el problema escala de 1 jornada (10 partidos) a una temporada completa (380 partidos), la Búsqueda Local simple sería insuficiente. Sería necesario implementar metaheurísticas poblacionales como Algoritmos Genéticos (GA) o trayectorias complejas como Recocido Simulado (Simulated Annealing).</li>
+<li><strong>Resolución Exacta (Programación Lineal Entera):</strong> Dado que el tamaño actual del problema es reducido ($N=10$), se podría modelar matemáticamente y resolver utilizando <em>solvers</em> como PuLP o Gurobi. Esto garantizaría encontrar el óptimo global matemático en fracciones de segundo, eliminando la incertidumbre de las heurísticas.</li>
+<li><strong>Escalabilidad a Temporadas Completas:</strong> Si el problema escala de 1 jornada (10 partidos) a una temporada completa (380 partidos), el árbol de expansión actual crecería demasiado. Sería necesario implementar metaheurísticas poblacionales como Algoritmos Genéticos (GA) o mejorar el estimador actual utilizando técnicas de <em>Machine Learning</em> para predecir la viabilidad de una rama antes de expandirla.</li>
 <li><strong>Restricciones Temporales Dinámicas:</strong> En un escenario real, La Liga impone restricciones de descanso. Por ejemplo, un equipo que juega el lunes no puede jugar el viernes de la siguiente jornada, o equipos con competiciones europeas tienen días bloqueados. Esto transformaría el problema en un Problema de Satisfacción de Restricciones (CSP) con ventanas de tiempo, requiriendo matrices de adyacencia temporal.</li>
 </ol>
 </div>
